@@ -29,10 +29,20 @@
             <TagSearch v-model="culture.tags" combobox-label="Tags" />
 
             <v-card-actions>
-              <v-btn color="primary" type="submit">Save</v-btn>
-              <v-btn color="secondary" @click="resetCulture">Reset</v-btn>
-              <v-btn color="primary" @click="dialog = true">Create Child Culture</v-btn>
-              <v-btn color="primary" dark @click="dialogBarcodeVisible = true">Create Label</v-btn>
+              <v-row>
+                <v-col cols="6" sm="6" md="auto">
+                  <v-btn color="primary" type="submit">Save</v-btn>
+                </v-col>
+                <v-col cols="6" sm="6" md="auto">
+                  <v-btn color="secondary" @click="resetCulture">Reset</v-btn>
+                </v-col>
+                <v-col cols="12" sm="6" md="auto">
+                  <v-btn color="primary" @click="dialog = true">Create Child Culture</v-btn>
+                </v-col>
+                <v-col cols="12" sm="6" md="auto">
+                  <v-btn color="primary" dark @click="dialogBarcodeVisible = true">Create Label</v-btn>
+                </v-col>
+              </v-row>
             </v-card-actions>
           </v-form>
 
@@ -54,19 +64,19 @@
   </v-dialog>
 
   <v-dialog v-model="dialogBarcodeVisible" max-width="600px">
-      <v-card>
-        <v-card-title>
-          <span class="headline">Label Generator</span>
-        </v-card-title>
-        <v-card-text>
-          <Barcode :barcodeData="barcodeData" />
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn color="blue darken-1" @click="dialogBarcodeVisible = false">Close</v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
+    <v-card>
+      <v-card-title>
+        <span class="headline">Label Generator</span>
+      </v-card-title>
+      <v-card-text>
+        <Barcode :barcodeData="barcodeData" />
+      </v-card-text>
+      <v-card-actions>
+        <v-spacer></v-spacer>
+        <v-btn color="blue darken-1" @click="dialogBarcodeVisible = false">Close</v-btn>
+      </v-card-actions>
+    </v-card>
+  </v-dialog>
 </template>
 
 <script>
@@ -100,21 +110,21 @@ export default {
       alertMessage: "",
       alertType: "success",
       originDate: null,
-      
+
       // Barcode settings:
       dialogBarcodeVisible: false,
     };
   },
   computed: {
     barcodeData() {
-    return {
-      barcodeType: 'qrcode',
-      barcodeText: this.culture ? this.culture.id : '', // Use a default value if culture is null
-      labelText: this.culture ? this.culture.name : '', // Use a default value if culture is null
-      dateText: this.culture ? this.formatDate(this.culture.origin_date) : '', // Use a default value if culture is null
-      showSecondLine: true,
-    };
-  },
+      return {
+        barcodeType: 'qrcode',
+        barcodeText: this.culture ? this.culture.id : '', // Use a default value if culture is null
+        labelText: this.culture ? this.culture.name : '', // Use a default value if culture is null
+        dateText: this.culture ? this.formatDate(this.culture.origin_date) : '', // Use a default value if culture is null
+        showSecondLine: true,
+      };
+    },
     formattedDate() {
       return this.culture?.origin_date
         ? this.formatDate(this.culture.origin_date)
