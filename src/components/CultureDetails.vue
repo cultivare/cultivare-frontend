@@ -40,7 +40,7 @@
                   <v-btn color="primary" @click="dialog = true">Create Child Culture</v-btn>
                 </v-col>
                 <v-col cols="12" sm="6" md="auto">
-                  <v-btn color="primary" dark @click="dialogBarcodeVisible = true">Create Label</v-btn>
+                  <v-btn prepend-icon="mdi-qrcode" color="primary" dark @click="dialogBarcodeVisible = true">Create Label</v-btn>
                 </v-col>
               </v-row>
             </v-card-actions>
