@@ -19,7 +19,7 @@
 
     <v-card-text>
       <v-row>
-        <v-col cols="12" md="8">
+        <v-col cols="12" md="6">
           <v-form @submit.prevent="saveCulture">
             <v-text-field v-model="culture.name" label="Culture name" />
             <v-text-field v-model="culture.species" label="Species" />
@@ -48,7 +48,7 @@
 
           <Notes :key="culture.id" :culture-id="culture.id" />
         </v-col>
-        <v-col cols="12" md="4">
+        <v-col cols="12" md="6">
           <GraphView :key="culture.id" :culture_id="culture.id" />
         </v-col>
       </v-row>
