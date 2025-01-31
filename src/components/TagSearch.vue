@@ -5,24 +5,17 @@
     :label="comboboxLabel"
     :items="suggestions"
     :loading="isLoading"
-    chips
     multiple
-    deletable-chips
     hide-no-data
-    clearable
     return-object
   >
     <template #selection="{ item, index }">
       <v-chip
-        v-if="index < maxChipsDisplay"
         closable
         @click:close="removeTag(item)"
       >
-        {{ item.name }}
+        {{ item.title }}
       </v-chip>
-      <span v-if="index === maxChipsDisplay">
-        (+{{ emitSelectedTags.length - maxChipsDisplay }} others)
-      </span>
     </template>
     <template #item="{ props, item }">
       <v-list-item v-bind="props">
@@ -54,7 +47,6 @@ const selectedTags = ref([...props.modelValue]);
 const search = ref(null);
 const suggestions = ref([]);
 const isLoading = ref(false);
-const maxChipsDisplay = ref(3);
 
 const emitSelectedTags = computed({
   get: () => selectedTags.value,
