@@ -12,7 +12,7 @@
     <template #selection="{ item, index }">
       <v-chip
         closable
-        @click:close="removeTag(item)"
+        @click:close="removeTag(index)" 
       >
         {{ item.title }}
       </v-chip>
@@ -116,8 +116,12 @@ watchEffect(() => {
   }
 });
 
-const removeTag = (tag) => {
-  console.log("[TagsCombobox] removeTag: Removing tag:", tag);
-  emitSelectedTags.value = selectedTags.value.filter((t) => t !== tag);
+const removeTag = (index) => {
+  console.log("[TagsCombobox] removeTag: Removing tag at index:", index);
+  if (index > -1) {
+      const updatedTags = [...selectedTags.value];
+      updatedTags.splice(index, 1);
+      emitSelectedTags.value = updatedTags;
+  }
 };
 </script>
